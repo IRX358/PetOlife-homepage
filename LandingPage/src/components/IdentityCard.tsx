@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ShieldCheck, QrCode, Phone, CalendarCheck, BadgeCheck } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { petProfile } from '../data/pets';
+import dogpfp from '../assets/dogpfp.png';
 
 interface Props { onClick?: () => void; }
 
@@ -88,7 +89,7 @@ const IdentityCard: React.FC<Props> = ({ onClick }) => {
               background: 'linear-gradient(135deg, #fbbf24, #f97316)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 40, boxShadow: '0 4px 16px rgba(251,191,36,0.3)',
-            }}>🐕</div>
+            }}><img src={dogpfp} alt="Bujji" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} /></div>
             <div style={{
               position: 'absolute', bottom: -4, right: -4,
               width: 24, height: 24, borderRadius: '50%',

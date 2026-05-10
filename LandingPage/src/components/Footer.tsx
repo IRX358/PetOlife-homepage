@@ -1,65 +1,84 @@
 import React from 'react';
-import { PawPrint, Heart } from 'lucide-react';
+import { PawPrint, Heart, Dog, Cat } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 
 const Footer: React.FC = () => {
   const { dark } = useTheme();
-  const bg = dark ? '#0F172A' : '#1a2e35';
-
   const links = [
     { label: 'Protocol', href: '#protocol' },
-    { label: 'Privacy', href: '#trust' },
-    { label: 'Emergency', href: '#emergency' },
-    { label: 'Demo', href: '#demo' },
+    { label: 'Privacy',  href: '#trust'    },
+    { label: 'Emergency',href: '#emergency'},
+    { label: 'Demo',     href: '#demo'     },
   ];
 
   return (
-    <footer style={{ background: bg, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+    <footer style={{ background: dark ? '#0F172A' : '#1a2e35', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '56px 40px 40px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 32, marginBottom: 40 }}>
           {/* Brand */}
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg, #005F63, #8CC63F)' }}>
-              <PawPrint size={18} color="#fff" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div style={{
+              width: 40, height: 40, borderRadius: 12,
+              background: 'linear-gradient(135deg, #005F63, #8CC63F)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <PawPrint size={20} color="#fff" />
             </div>
             <div>
-              <p className="font-hand text-xl font-bold text-white">PetOlife</p>
-              <p className="text-xs" style={{ color: '#64748b' }}>Unified Pet Identity Infrastructure</p>
+              <p className="font-hand" style={{ fontSize: 22, fontWeight: 700, color: '#fff', lineHeight: 1 }}>PetOlife</p>
+              <p style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>Unified Pet Identity Infrastructure</p>
             </div>
           </div>
 
           {/* Pet animation */}
-          <div className="text-3xl float-a hidden md:block" title="🐕 🐈">
-            🐕 🐈
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end', position: 'relative' }}>
+            <motion.div
+              animate={{ y: [0, -6, 0], rotate: [0, 8, -8, 0] }}
+              transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+            >
+              <Dog size={36} color={dark ? '#8CC63F' : '#005F63'} strokeWidth={1.5} />
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, -8, 0], rotate: [0, -10, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut", delay: 0.4 }}
+            >
+              <Cat size={32} color={dark ? '#e2e8f0' : '#8CC63F'} strokeWidth={1.5} />
+            </motion.div>
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              style={{ position: 'absolute', top: -10, left: 24 }}
+            >
+              <Heart size={16} fill="#ef4444" color="#ef4444" />
+            </motion.div>
           </div>
 
           {/* Links */}
-          <div className="flex flex-wrap gap-6">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 28 }}>
             {links.map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm transition-colors duration-200 hover:text-green-400"
-                style={{ color: '#94a3b8' }}
-              >
-                {link.label}
-              </a>
+              <a key={link.label} href={link.href}
+                style={{ fontSize: 14, color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#8CC63F'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#94a3b8'}
+              >{link.label}</a>
             ))}
           </div>
         </div>
 
-        <div className="mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <p className="text-xs" style={{ color: '#475569' }}>
+        <div style={{
+          display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 16,
+          paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)',
+        }}>
+          <p style={{ fontSize: 12, color: '#475569' }}>
             © 2025 PetOlife. Built with{' '}
-            <Heart size={11} className="inline" style={{ color: '#8CC63F' }} />{' '}
+            <Heart size={11} style={{ display: 'inline', verticalAlign: 'middle', color: '#8CC63F' }} />{' '}
             for every pet and their person.
           </p>
-          <p className="text-xs font-mono px-3 py-1 rounded-full"
-            style={{ background: 'rgba(140,198,63,0.1)', color: '#8CC63F' }}>
-            Hackathon Build — Unified Pet Identity Protocol
-          </p>
+          <span style={{
+            fontSize: 11, fontFamily: 'monospace', padding: '5px 14px', borderRadius: 999,
+            background: 'rgba(140,198,63,0.1)', color: '#8CC63F',
+          }}>Built by - <a href="https://irfan.qzz.io" target="_blank" rel="noreferrer" style={{ textDecoration: 'underline' }}>irfan.qzz.io</a></span>
         </div>
       </div>
     </footer>
