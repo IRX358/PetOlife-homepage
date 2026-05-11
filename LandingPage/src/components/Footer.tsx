@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
           paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)',
         }}>
           <p style={{ fontSize: 12, color: '#475569' }}>
-            © 2025 PetOlife. Built with{' '}
+            © 2026 PetOlife. Built with{' '}
             <Heart size={11} style={{ display: 'inline', verticalAlign: 'middle', color: '#8CC63F' }} />{' '}
             for every pet and their person.
           </p>
